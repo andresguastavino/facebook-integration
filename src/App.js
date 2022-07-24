@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FacebookLogin from './Components/FacebookLogin';
+import SelectFacebookPage from './Components/SelectFacebookPage';
 
 export default function App() {
   
+    const [accessToken, setAccessToken] = useState('');
+    const [selectedPage, setSelectedPage] = useState({});
+
     return (
         <>
             <div className="App">
-                <FacebookLogin />
+                <FacebookLogin 
+                    setAccessToken={setAccessToken}
+                />
+
+                {
+                    accessToken && <SelectFacebookPage 
+                        accessToken={accessToken}
+                        setSelectedPage={setSelectedPage}
+                    />
+                }
+
             </div>
 
             <style jsx>{`
@@ -21,4 +35,4 @@ export default function App() {
         </>
     );
   
-};
+}

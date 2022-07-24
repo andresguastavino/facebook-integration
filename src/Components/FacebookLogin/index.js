@@ -1,10 +1,14 @@
 import React from 'react';
 import FacebookProvider, { Login } from 'react-facebook-sdk';
 
-export default function FacebookLogin() {
+export default function FacebookLogin({ setAccessToken }) {
 
     const handleResponse = (data) => {
         console.log(data);
+        const { tokenDetail } = data;
+        const { accessToken } = tokenDetail;
+        console.log(accessToken);
+        setAccessToken(accessToken);
     }
      
     const handleError = (error) => {
